@@ -2,6 +2,7 @@ class Matrix {
     constructor(n, matrix = []) {
         this.count = 0
         this.matrix = matrix
+        this.n = n
 
         for (let i = 0; i < n; i++) {
             this.matrix[i] = []
@@ -36,13 +37,15 @@ class Matrix {
         return this;
     }
 
-    spars() {
+    sparse() {
         let sparsed = []
+        sparsed.push([this.n, this.n, 0])
 
         for (let i = 0; i < this.matrix.length; i++) {
             for (let j = 0; j < this.matrix[i].length; j++) {
                 if (this.matrix[i][j] !== 0) {
                     sparsed.push([i, j, this.matrix[i][j]])
+                    sparsed[0][2]++;
                 }
             }
         }
